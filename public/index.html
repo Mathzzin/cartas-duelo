@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cartas Duelo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <a class="logo" href="#"><span class="logo-icon">✳</span> CARTAS<span class="logo-light">/DUELO</span></a>
+      <div class="online"><span class="pulse"></span><span id="connection">Conectando</span></div>
+    </header>
+
+    <section id="lobby" class="lobby">
+      <div class="hero">
+        <p class="eyebrow">UM JOGO DE ESTRATÉGIA E SORTE</p>
+        <h1>Uma carta.<br><span>Um duelo.</span></h1>
+        <p class="description">Desafie outra pessoa em uma disputa de cartas simples, em tempo real.</p>
+      </div>
+      <div class="lobby-card">
+        <label for="playerName">SEU NOME</label>
+        <input id="playerName" maxlength="16" placeholder="Digite seu nome" value="Jogador 1">
+        <button id="createBtn" class="primary">Criar uma sala <span>↗</span></button>
+        <div class="or"><span></span> OU ENTRE COM UM CÓDIGO <span></span></div>
+        <label for="roomCode">CÓDIGO DA SALA</label>
+        <div class="join-row"><input id="roomCode" maxlength="5" placeholder="EX: A2BCD"><button id="joinBtn" class="secondary">Entrar</button></div>
+        <p id="lobbyError" class="error" role="alert"></p>
+        <div class="rules"><strong>COMO JOGAR</strong><p>1. Cada pessoa recebe 5 cartas.</p><p>2. Joguem uma carta por turno.</p><p>3. A carta de maior valor ganha 1 ponto. A vence K; empates não pontuam.</p></div>
+      </div>
+    </section>
+
+    <section id="game" class="game hidden">
+      <div class="game-top">
+        <div><p class="eyebrow">SALA <span id="roomLabel">-----</span></p><h1>Campo de <span>duelo.</span></h1></div>
+        <button id="copyBtn" class="secondary small">Copiar código ↗</button>
+      </div>
+      <div class="scoreboard">
+        <div class="player-score"><span class="seat">JOGADOR 01</span><strong id="name0">Jogador 1</strong><span class="score" id="score0">0</span><span id="state0" class="player-state">Aguardando</span></div>
+        <div class="versus">VS</div>
+        <div class="player-score right"><span class="seat">JOGADOR 02</span><strong id="name1">Esperando...</strong><span class="score" id="score1">0</span><span id="state1" class="player-state">Aguardando</span></div>
+      </div>
+      <div class="table">
+        <div class="table-caption"><span>MESA DE JOGO</span><span id="roundLabel">RODADA 01</span></div>
+        <div class="played-cards">
+          <div class="played-slot"><div id="played0" class="card back"><span>✳</span></div><span id="playedName0">Jogador 1</span></div>
+          <div class="table-vs">✳</div>
+          <div class="played-slot"><div id="played1" class="card back"><span>✳</span></div><span id="playedName1">Jogador 2</span></div>
+        </div>
+        <div id="message" class="message">Criando sala...</div>
+        <div id="roundActions" class="round-actions hidden"><button id="nextBtn" class="primary">Próxima rodada →</button><button id="restartBtn" class="secondary">Recomeçar partida</button></div>
+      </div>
+      <section class="hand-area">
+        <div class="hand-heading"><div><p class="eyebrow">SUA MÃO</p><h2>Escolha sua carta</h2></div><span id="handCount">5 CARTAS</span></div>
+        <div id="hand" class="hand"></div>
+        <p class="hand-help">Selecione uma carta quando for sua vez. Depois de jogar, espere a outra pessoa.</p>
+      </section>
+      <button id="backBtn" class="text-button">← Voltar ao início</button>
+    </section>
+    <footer><span>CARTAS / DUELO · BETA 001</span><span>FEITO PARA DOIS JOGADORES</span></footer>
+  </main>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
